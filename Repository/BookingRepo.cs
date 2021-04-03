@@ -42,7 +42,8 @@ namespace BookingApi.Repository
 
         public async Task<Booking> PostBooking(Booking item)
         {
-            Booking Sp = null;
+            //int n = _context.Bookings.Max(x => x.Bookingid);
+            Booking Sp = new Booking();
             if (item == null)
             {
                 throw new NullReferenceException();

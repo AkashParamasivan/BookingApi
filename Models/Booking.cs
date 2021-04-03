@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -11,8 +12,9 @@ namespace BookingApi.Models
         public string CustomerId { get; set; }
         public string ServiceProviderId { get; set; }
         public DateTime? Servicedate { get; set; }
-        public TimeSpan? Starttime { get; set; }
-        public TimeSpan? Endtime { get; set; }
+        [Display(Name = "Expected working Hours")]
+        public int? Starttime { get; set; }
+        public int? Endtime { get; set; }
         public int? Estimatedcost { get; set; }
         public bool? Bookingstatus { get; set; }
         public bool? Servicestatus { get; set; }

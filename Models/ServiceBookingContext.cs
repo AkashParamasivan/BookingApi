@@ -26,7 +26,7 @@ namespace BookingApi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=KANINI-LTP-330;Database=ServiceBooking;Trusted_Connection=True;");
             }
         }
@@ -38,8 +38,6 @@ namespace BookingApi.Models
             modelBuilder.Entity<Booking>(entity =>
             {
                 entity.ToTable("Booking");
-
-                entity.Property(e => e.Bookingid).ValueGeneratedNever();
 
                 entity.Property(e => e.Bookingstatus).HasDefaultValueSql("((0))");
 
@@ -67,12 +65,12 @@ namespace BookingApi.Models
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.BookingCustomers)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Booking__Custome__48CFD27E");
+                    .HasConstraintName("FK__Booking__Custome__6477ECF3");
 
                 entity.HasOne(d => d.ServiceProvider)
                     .WithMany(p => p.BookingServiceProviders)
                     .HasForeignKey(d => d.ServiceProviderId)
-                    .HasConstraintName("FK__Booking__Service__49C3F6B7");
+                    .HasConstraintName("FK__Booking__Service__656C112C");
             });
 
             modelBuilder.Entity<SpecializationTable>(entity =>
@@ -136,6 +134,10 @@ namespace BookingApi.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Experience).HasColumnName("experience");
+
+                entity.Property(e => e.IsNewProvider).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.IsProvicedBooked).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(50)

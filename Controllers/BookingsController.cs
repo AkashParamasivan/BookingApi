@@ -51,7 +51,7 @@ namespace BookingApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking specialization)
         {
-            _log4net.Info("Booking table with " + specialization + "get aded");
+            _log4net.Info("Booking table with " + specialization.CustomerId + "get aded");
             // _log4net.Info("Specilization post method is initialized");
             if (!ModelState.IsValid)
             {
